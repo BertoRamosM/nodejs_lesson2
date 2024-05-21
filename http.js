@@ -27,3 +27,11 @@ const server = http.createServer(processRequest);
   });
 
 
+//status code list:
+/*    100 - 199 = informative response
+      200 - 299 = satisfactory response
+      300 - 399 = redirection
+      400 - 499 = client errors
+      500 - 599 = server errors
+ */
+
