@@ -1,0 +1,15 @@
+### to get the info of the pokemon ditto
+GET http://localhost:1234/pokemon/ditto
+
+### we need to separate all the request methods with a comment
+
+### to create a pokemon
+POST http://localhost:1234/pokemon
+Content-Type: application/json
+{
+  "name": "ditto",
+  "type": "normal",
+  "moves": [
+    "transform"
+  ]
+}

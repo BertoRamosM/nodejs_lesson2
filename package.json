@@ -4,7 +4,8 @@
   "description": "lesson2  of introduction to the nodejs course",
   "main": "index.js\t",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node 2.routing.js"
   },
   "repository": {
     "type": "git",
