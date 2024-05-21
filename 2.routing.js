@@ -2,24 +2,24 @@ const http = require("node:http");
 //remember: nodejs is event based
 
 //commonJS(modules) we can import a json a saco
-const ditoJSON = require('./pokemon/ditto.json')
+const ditoJSON = require("./pokemon");
 
 const processRequest = (req, res) => {
   const { method, url } = req;
 
   switch (method) {
-    case 'GET':
+    case "GET":
       switch (url) {
-        case '/pokemon/ditto':
-          res.setHeader('Content-Type', 'application/json; charset=utf-8')
-          return res.end(JSON.stringify(ditoJSON))  
+        case "/pokemon/ditto":
+          res.setHeader("Content-Type", "application/json; charset=utf-8");
+          return res.end(JSON.stringify(ditoJSON));
         default:
-          res.statusCode = 404
-           res.setHeader("Content-Type", "text/html; charset=utf-8");
-          return res.end('<h1>404Not found</h1>')
+          res.statusCode = 404;
+          res.setHeader("Content-Type", "text/html; charset=utf-8");
+          return res.end("<h1>404Not found</h1>");
       }
 
-    case 'POST':
+    case "POST":
       switch (url) {
         case "/pokemon": {
           let body = ``;
@@ -27,17 +27,22 @@ const processRequest = (req, res) => {
           //BUT
           //the chunk its a binary buffer! so we transform to string
           req.on("data", chunk => {
-            body += chunk.toString() 
-          })
+            body += chunk.toString();
+          });
           req.on("end", () => {
-            const data = JSON.parse(body)
+            const data = JSON.parse(body);
             //we could do other things, such as connect a db from here to store the info, etc
             //201 because we saved the new resouce
-            res.writeHead(201, { "Content-Type": "application/json; charset=urf-8"})
-            res.end(JSON.stringify(data))
-         })
+             res.writeHead(201, {
+               "Content-Type": "application/json; charset=utf-8",
+             });
+            data.timeStamp = Date.now()
+            //we return the data
+            res.end(JSON.stringify(data));
+          });
+          break;
         }
-        
+
         default:
           res.statusCode = 404;
           res.setHeader("Content-Type", "text/html; charset=utf-8");
