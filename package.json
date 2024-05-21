@@ -1,0 +1,24 @@
+{
+  "name": "course2",
+  "version": "1.0.0",
+  "description": "lesson2  of introduction to the nodejs course",
+  "main": "index.js\t",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BertoRamosM/nodejs_lesson2.git"
+  },
+  "keywords": [
+    "nodejs",
+    "course",
+    "lessons"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BertoRamosM/nodejs_lesson2/issues"
+  },
+  "homepage": "https://github.com/BertoRamosM/nodejs_lesson2#readme"
+}
