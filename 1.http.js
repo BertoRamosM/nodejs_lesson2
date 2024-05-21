@@ -23,6 +23,7 @@ const processRequest = (req, res) => {
         //actually not needed, 200 its defualt
         res.statusCode = 200;
         //important to change the header to inform that its an image and only if 200
+        //thanks to the header we can transform the binary data to the actual content (image, text, etc)
         res.setHeader("Content-Type", "image/jpg");
         res.end(data)
       }
