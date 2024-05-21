@@ -4,9 +4,14 @@ const http = require("node:http");
 const desiredPort = process.env.PORT ?? 1234;
 
 const processRequest = (req, res) => {
-console.log("Request recieved:", req.url)
-res.end('Hello world')
+  if (req.url === "/") {
+    res.statusCode = 200
+    res.setHeader('Content-Type', 'text/plain')
+    // or text/html, or application/json, or image etc etc etc
+    res.end("Welcome to my main page")
+  }
 }
+
 const server = http.createServer(processRequest);
 
   server.listen(desiredPort, () => {
