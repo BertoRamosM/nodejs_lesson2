@@ -19,6 +19,24 @@ app.use(/* "/" */(req, res, next) => {
    next()
 })
 
+//here we change the code that takes chunk of code and store them in the body to later POST them
+app.use((req, res, next) => {
+  if (req.method !== 'POST') return next()
+  if (req.headers['content-type'] !== "application/json") return next()
+  //here only reach only post and json
+    let body = ``;
+    req.on("data", (chunk) => {
+      body += chunk.toString();
+    });
+    req.on("end", () => {
+      const data = JSON.parse(body);
+      data.timeStamp = Date.now();
+      //instead of sending a response, here we mutate the request and send the data to req.body
+      req.body = data
+      next()
+    });
+})
+
 app.get("/pokemon/ditto", (req, res) => {
   //we can send a json easily:
   res.json(ditto);
@@ -28,16 +46,17 @@ app.get("/pokemon/ditto", (req, res) => {
 })
 
 app.post('/pokemon', (req, res) => {
+    /* all this code now its unnecessary with the middleware:
     let body = ``
   req.on("data", chunk => {
       body += chunk.toString()
   })
   req.on("end", () => {
     const data = JSON.parse(body)
-    data.timeStamp = Date.now()
-    res.status(201).json(data)
+    data.timeStamp = Date.now() */
+    res.status(201).json(req.body)
   })
-})
+
 
 
 app.get("/pink", (req, res) => {
