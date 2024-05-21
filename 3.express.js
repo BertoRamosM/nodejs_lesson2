@@ -19,6 +19,15 @@ app.use(/* "/" */(req, res, next) => {
    next()
 })
 
+
+/* AAAAANDDD....
+    thanks to the following code, we can replace the whole code from before, the middleware with:
+
+    =====================
+    app.use(express.json())
+    =====================
+*/
+
 //here we change the code that takes chunk of code and store them in the body to later POST them
 app.use((req, res, next) => {
   if (req.method !== 'POST') return next()
@@ -54,6 +63,8 @@ app.post('/pokemon', (req, res) => {
   req.on("end", () => {
     const data = JSON.parse(body)
     data.timeStamp = Date.now() */
+  
+  //here it supposed to be written to the db instead, we will see later how to do
     res.status(201).json(req.body)
   })
 
